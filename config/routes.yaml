@@ -3,3 +3,23 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+#app_homepage:
+#    path: /
+#    controller: App\Controller\AppController::homepage
+
+app_login:
+    path: /
+    controller: App\Controller\SecurityController::login
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+app_dashboard:
+    path: /dashboard
+    controller: App\Controller\DashboardController::index
+
+app_event_receive:
+    path: /events/receive/{accessToken}
+    controller: App\Controller\EventController::receive
