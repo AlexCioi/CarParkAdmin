@@ -6,10 +6,47 @@
     <body class="container-fluid vh-100">
         <div class="row h-100">
             <div class="col-2 bg-secondary">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
             </div>
             <div class="col-10">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec adipiscing tristique risus nec feugiat in fermentum. Quam elementum pulvinar etiam non. Lectus urna duis convallis convallis. In hendrerit gravida rutrum quisque non. Turpis egestas maecenas pharetra convallis posuere morbi leo urna molestie. Turpis egestas sed tempus urna et pharetra pharetra. Viverra accumsan in nisl nisi. Lorem donec massa sapien faucibus et molestie. Elementum nibh tellus molestie nunc non blandit massa enim. Tempor orci dapibus ultrices in iaculis nunc sed. Nam at lectus urna duis convallis convallis tellus id. Sed egestas egestas fringilla phasellus faucibus scelerisque. Tellus pellentesque eu tincidunt tortor aliquam nulla. Convallis a cras semper auctor neque. Id nibh tortor id aliquet lectus proin nibh. Cursus eget nunc scelerisque viverra mauris in aliquam. Dictum non consectetur a erat nam at lectus urna duis. At urna condimentum mattis pellentesque id nibh tortor id aliquet.
+                <div class="container-fluid d-flex my-4 align-items-center">
+                    <h4 class="mx-3">Filter | </h4>
+                    <div class="">
+                        {{ form_start(form) }}
+                            <div class="d-flex align-items-center">
+                                <div class="mx-5">{{ form_row(form.startDate) }}</div>
+                                <div>{{ form_row(form.endDate) }}</div>
+                                <div>{{ form_row(form.submit) }}</div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Zone</th>
+                        <th scope="col">Event Type</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for event in events%}
+                        <tr>
+                            <th scope="row">{{ event.id }}</th>
+                            <td>{{ event.status }}</td>
+                            <td>{{ event.zone }}</td>
+                            <td>{{ event.eventType }}</td>
+                            <td>{{ event.dateTime|date('Y-m-d') }}</td>
+                            <td>{{ event.dateTime|date('H:i') }}</td>
+                            <td>{{ event.description }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
 

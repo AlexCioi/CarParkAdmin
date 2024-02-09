@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,9 +17,26 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class EventRepository extends ServiceEntityRepository
 {
+    public function getQb(): QueryBuilder
+    {
+        return $this->createQueryBuilder('event');
+    }
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Event::class);
+    }
+
+    public function getAllEvents(QueryBuilder $qb): self
+    {
+//        $localTime = new LocalTime();
+//        $localTime = $localTime->getLocalTime('');
+
+        $qb
+            ->where('event.id > 0')
+            ->orderBy('event.dateTime', 'ASC');
+
+        return $this;
     }
 
 //    /**

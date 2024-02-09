@@ -17,9 +17,9 @@
 
             <h1 class="h3 mb-3 font-weight-normal text-center">User login</h1>
 {#            <label for="inputUsername">Username</label>#}
-            <input placeholder="username" type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-2 bg-light" autocomplete="username" required autofocus>
+            <input placeholder="Username" type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mb-2 bg-light" autocomplete="username" required autofocus>
 {#            <label for="inputPassword">Password</label>#}
-            <input placeholder="password" type="password" name="password" id="inputPassword" class="form-control bg-light" autocomplete="current-password" required>
+            <input placeholder="Password" type="password" name="password" id="inputPassword" class="form-control bg-light" autocomplete="current-password" required>
 
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
