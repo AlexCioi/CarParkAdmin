@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Form\EventFilterType;
 use App\Service\EventManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -30,6 +31,22 @@ class EventController extends AbstractController
 
         return $this->render('event/index.html.twig', [
             'controller_name' => 'EventController',
+        ]);
+    }
+
+    public function index(Request $request, EventManager $eventManager): Response
+    {
+        $events = $eventManager->getAllEvents();
+
+        $form = $this->createForm(EventFilterType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid() ) {
+            $startEndDate = $form->getData();
+        }
+
+        return $this->render('event/index.html.twig', [
+            'events' => $events,
+            'form' => $form
         ]);
     }
 }

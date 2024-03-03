@@ -20,6 +20,14 @@ app_dashboard:
     path: /dashboard
     controller: App\Controller\DashboardController::index
 
+app_events:
+    path: /dashboard/events
+    controller: App\Controller\EventController::index
+
+app_stats:
+    path: /dashboard/stats
+    controller: App\Controller\DashboardController::index
+
 app_event_receive:
     path: /events/receive/{accessToken}
     controller: App\Controller\EventController::receive
