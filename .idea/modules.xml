@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AbstractNeuralDynamics.iml" filepath="$PROJECT_DIR$/.idea/AbstractNeuralDynamics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CarParkAdmin.iml" filepath="$PROJECT_DIR$/.idea/CarParkAdmin.iml" />
     </modules>
   </component>
 </project>
