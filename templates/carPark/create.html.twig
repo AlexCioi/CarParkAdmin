@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Add new Car Park
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="w-50">
+            {{ form_start(form) }}
+            <div>
+                <label>Capacity</label>
+                {{ form_row(form.capacity) }}
+            </div>
+            <div>
+                <label>Name</label>
+                {{ form_row(form.name) }}
+            </div>
+            <div class="mt-2">
+                {{ form_row(form.submit) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+{% endblock %}

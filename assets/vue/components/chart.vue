@@ -1,35 +1,51 @@
 <script>
-import { Bar } from 'vue-chartjs';
+import { Doughnut } from 'vue-chartjs';
 import {
-    Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
+    Chart as ChartJS, Title,
+    Tooltip,
+    Legend,
+    ArcElement,
+    CategoryScale,
 } from 'chart.js';
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
 
 export default {
     name: 'ChartComponent',
     components: {
-        Bar,
+        Doughnut,
     },
-    data() {
-        return {
-            chartData: {
-                labels: ['January', 'February', 'March'],
-                datasets: [{ data: [5, 3, 7] }],
-            },
-            chartOptions: {
-                responsive: true,
-            },
-        };
+    props: {
+        data: {
+            type: Object,
+            default: () => {},
+        },
+        chartId: {
+            type: Number,
+        },
+        width: {
+            type: Number,
+            default: 400,
+        },
+        height: {
+            type: Number,
+            default: 400,
+        },
+        chartOptions: {
+            type: Object,
+            default: () => {},
+        },
     },
 };
 </script>
 
 <template>
-    <Bar
-        id="my-chart-id"
-        :options="chartOptions"
-        :data="chartData"
+    <Doughnut
+        :data="data"
+        :chart-options="chartOptions"
+        :chart-id="chartId"
+        :width="width"
+        :height="height"
     />
 </template>
 

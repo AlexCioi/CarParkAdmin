@@ -2,46 +2,54 @@
 
 namespace App\Service;
 
+use App\Entity\CarPark;
 use App\Entity\Event;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class EventManager
 {
 
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private ManagerRegistry $doctrine,
     ){
     }
 
-    public function eventProcess(string $requestJson): void
+    public function eventProcess(Request $request): void
     {
-        $requestObject = json_decode($requestJson);
+        $data = json_decode($request->getContent(), true);
+
         $event = new Event();
+        $carPark = $this->entityManager->getRepository(CarPark::class)->findOneBy([
+            'id' => $data['parkNumber']
+        ]);
 
-        //dd($requestObject);
+        $carPark->incrementTakenSpaces();
+        $this->entityManager->persist($carPark);
 
-        $event->setStatus($requestObject->status);
-        $event->setZone($requestObject->zone);
-        $event->setEventType($requestObject->eventType);
-        $event->setDateTime(new \DateTime($requestObject->dateTime));
-        $event->setDescription($requestObject->description);
+        $event->setCarPark($carPark);
+        $event->setDescription($data['description']);
+        $event->setStatus($data['status']);
 
-//        dd($event);
+        $dateString = $data['dateTime']['date'];
+        $dateTime = new \DateTime($dateString);
+
+        $event->setDateTime($dateTime);
 
         $this->entityManager->persist($event);
         $this->entityManager->flush();
-    }
 
-    public function getAllEvents(): ?array
-    {
-        $repo = $this->doctrine->getRepository(Event::class);
-        $qb = $repo->getQb();
-
-        $repo->getAllEvents($qb);
-
-        return $qb->getQuery()->getResult();
+        //        {
+//            "status": 0,
+//            "parkNumber": 3,
+//            "dateTime": {
+//                "date": "2024-03-23 18:32:52.000000",
+//                "timezone_type": 3,
+//                "timezone": "UTC"
+//            },
+//            "description": "irure laborum Duis"
+//        }
     }
 }

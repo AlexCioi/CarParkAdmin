@@ -17,17 +17,14 @@ class Event
     #[ORM\Column]
     private ?int $status = null;
 
-    #[ORM\Column]
-    private ?int $zone = null;
-
-    #[ORM\Column]
-    private ?int $eventType = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateTime = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'events')]
+    private ?CarPark $carPark = null;
 
     public function getId(): ?int
     {
@@ -42,30 +39,6 @@ class Event
     public function setStatus(int $status): static
     {
         $this->status = $status;
-
-        return $this;
-    }
-
-    public function getZone(): ?int
-    {
-        return $this->zone;
-    }
-
-    public function setZone(int $zone): static
-    {
-        $this->zone = $zone;
-
-        return $this;
-    }
-
-    public function getEventType(): ?int
-    {
-        return $this->eventType;
-    }
-
-    public function setEventType(int $eventType): static
-    {
-        $this->eventType = $eventType;
 
         return $this;
     }
@@ -90,6 +63,18 @@ class Event
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCarPark(): ?CarPark
+    {
+        return $this->carPark;
+    }
+
+    public function setCarPark(?CarPark $carPark): static
+    {
+        $this->carPark = $carPark;
 
         return $this;
     }

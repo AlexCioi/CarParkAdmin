@@ -29,5 +29,15 @@ app_stats:
     controller: App\Controller\DashboardController::index
 
 app_event_receive:
-    path: /events/receive/{accessToken}
-    controller: App\Controller\EventController::receive
+    path: /events/receive
+    controller: App\Controller\PostRequestController::receiveEvent
+    methods: POST
+
+api_car_parks:
+    path: /api/carParks
+    controller: App\Controller\CarParkController::fetchCarParks
+    methods: GET
+
+app_park_create:
+    path: /park/create
+    controller: App\Controller\CarParkController::create
