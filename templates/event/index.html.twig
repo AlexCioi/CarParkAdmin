@@ -23,7 +23,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Status</th>
+            <th scope="col">License plate</th>
             <th scope="col">Park Number</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
@@ -34,7 +34,7 @@
         {% for event in events%}
             <tr>
                 <th scope="row">{{ event.id }}</th>
-                <td>{{ event.status }}</td>
+                <td>{{ event.licensePlate }}</td>
                 <td>{{ event.carPark.id }}</td>
                 <td>{{ event.dateTime|date('Y-m-d') }}</td>
                 <td>{{ event.dateTime|date('H:i') }}</td>

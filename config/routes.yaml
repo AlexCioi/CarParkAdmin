@@ -30,7 +30,7 @@ app_stats:
 
 app_event_receive:
     path: /events/receive
-    controller: App\Controller\PostRequestController::receiveEvent
+    controller: App\Controller\EventController::receiveEvent
     methods: POST
 
 api_car_parks:

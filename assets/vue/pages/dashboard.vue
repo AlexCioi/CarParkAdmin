@@ -48,8 +48,13 @@ export default {
             return {
                 labels: ['Occupied', 'Free'],
                 datasets: [{
-                    data: [park.takenSpaces, park.capacity - park.takenSpaces],
-                    backgroundColor: ['rgb(204, 0, 0)', 'rgb(0, 143, 51)'],
+                    data: [
+                        park.takenSpaces, park.capacity - park.takenSpaces
+                    ],
+                    backgroundColor: [
+                        'rgb(204, 0, 0)',
+                        'rgb(0, 143, 51)'
+                    ],
                     hoverOffset: 4,
                 }],
             };
@@ -62,7 +67,7 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container d-flex">
         <div
             class="w-25"
             v-for="park in carParks"

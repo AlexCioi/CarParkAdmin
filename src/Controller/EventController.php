@@ -29,4 +29,11 @@ class EventController extends AbstractController
             'form' => $form
         ]);
     }
+
+    public function receiveEvent(Request $request, EventManager $eventManager): Response
+    {
+        $eventManager->eventProcess($request);
+
+        return new Response($request->getContent());
+    }
 }

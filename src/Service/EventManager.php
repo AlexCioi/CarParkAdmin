@@ -31,7 +31,7 @@ class EventManager
 
         $event->setCarPark($carPark);
         $event->setDescription($data['description']);
-        $event->setStatus($data['status']);
+        $event->setLicensePlate($data['licensePlate']);
 
         $dateString = $data['dateTime']['date'];
         $dateTime = new \DateTime($dateString);

@@ -15,7 +15,7 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $status = null;
+    private ?string $licensePlate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateTime = null;
@@ -31,14 +31,14 @@ class Event
         return $this->id;
     }
 
-    public function getStatus(): ?int
+    public function getLicensePlate(): ?string
     {
-        return $this->status;
+        return $this->licensePlate;
     }
 
-    public function setStatus(int $status): static
+    public function setLicensePlate(string $licensePlate): static
     {
-        $this->status = $status;
+        $this->licensePlate = $licensePlate;
 
         return $this;
     }
